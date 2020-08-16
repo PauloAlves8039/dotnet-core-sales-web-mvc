@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Models;
 
 namespace SalesWebMvc.Data
 {
+    /// <summary>
+    /// Classe responsável pela definição das entidades da aplicação no banco de dados.
+    /// </summary>
     public class SalesWebMvcContext : DbContext
     {
         public SalesWebMvcContext (DbContextOptions<SalesWebMvcContext> options)
@@ -14,6 +13,8 @@ namespace SalesWebMvc.Data
         {
         }
 
-        public DbSet<SalesWebMvc.Models.Department> Department { get; set; }
+        public DbSet<Department> Department { get; set; }
+        public DbSet<Seller> Seller { get; set; }
+        public DbSet<SalesRecord> SalesRecords { get; set; }
     }
 }
