@@ -1,9 +1,7 @@
 ﻿using SalesWebMvc.Data;
 using SalesWebMvc.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SalesWebMvc.Services
 {
@@ -26,6 +24,16 @@ namespace SalesWebMvc.Services
         public List<Seller> FindAll() 
         {
             return _context.Seller.ToList();
+        }
+
+        /// <summary>
+        /// Método para inserir registro no banco de dados.
+        /// </summary>
+        /// <param name="obj">Insere o objeto Seller</param>
+        public void Insert(Seller obj) 
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
         }
     }
 }
