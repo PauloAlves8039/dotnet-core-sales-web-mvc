@@ -3,6 +3,7 @@ using SalesWebMvc.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using SalesWebMvc.Services.Exceptions;
 
 namespace SalesWebMvc.Services
 {
@@ -50,12 +51,33 @@ namespace SalesWebMvc.Services
         /// <summary>
         /// Método para remover vendedor.
         /// </summary>
-        /// <param name="id">parÂmetro de remoção do vendedor.</param>
+        /// <param name="id">parâmetro de remoção do vendedor.</param>
         public void Remove(int id) 
         {
             var obj = _context.Seller.Find(id);
             _context.Seller.Remove(obj);
             _context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Método para atualizar vendedor.
+        /// </summary>
+        /// <param name="obj">parâmetro de atualização do vendedor.</param>
+        public void Update(Seller obj) 
+        {
+            if (!_context.Seller.Any(x => x.Id == obj.Id)) 
+            {
+                throw new NotFoundException("Id not found");
+            }
+            try
+            {
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e) 
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
     }
 }
