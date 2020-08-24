@@ -2,6 +2,8 @@
 using SalesWebMvc.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SalesWebMvc.Services
 {
@@ -21,11 +23,9 @@ namespace SalesWebMvc.Services
         /// Método responsável por atribuir uma lista de todos os departamentos.
         /// </summary>
         /// <returns>Retorna todos os departamentos.</returns>
-        public List<Department> FindAll() 
+        public async Task<List<Department>> FindAllAsync() 
         {
-            return _context.Department.OrderBy(x => x.Name).ToList();
+            return await _context.Department.OrderBy(x => x.Name).ToListAsync();
         }
-
-
     }
 }
