@@ -25,12 +25,20 @@ namespace SalesWebMvc.Controllers
             _departmentService = departmentService;
         }
 
+        /// <summary>
+        /// Action responsável pela listagem dos vendedores.
+        /// </summary>
+        /// <returns>Lista de vendedores.</returns>
         public async Task<IActionResult> Index()
         {
             var list = await _sellerService.FindAllAsync();
             return View(list);
         }
 
+        /// <summary>
+        /// Action responsável por adicionar vendedor por GET.
+        /// </summary>
+        /// <returns>View com dados inseridos do vendedor.</returns>
         public async Task<IActionResult> Create()
         {
             var departments = await _departmentService.FindAllAsync();
@@ -38,6 +46,11 @@ namespace SalesWebMvc.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Action responsável por adicionar vendedor por POST.
+        /// </summary>
+        /// <param name="seller">Representa o objeto vendedor.</param>
+        /// <returns>View com dados inseridos do vendedor.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Seller seller)
@@ -52,6 +65,11 @@ namespace SalesWebMvc.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Action responsável pela exclusão de vendedor por GET.
+        /// </summary>
+        /// <param name="id">Parâmetro de exclusão do vendedor.</param>
+        /// <returns>View com dados atualizados após exclusão do vendedor.</returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -68,6 +86,11 @@ namespace SalesWebMvc.Controllers
             return View(obj);
         }
 
+        /// <summary>
+        /// Action responsável pela exclusão de vendedor por POST.
+        /// </summary>
+        /// <param name="id">Parâmetro de exclusão do vendedor.</param>
+        /// <returns>View com dados atualizados após exclusão do vendedor.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id) 
@@ -83,6 +106,11 @@ namespace SalesWebMvc.Controllers
             }            
         }
 
+        /// <summary>
+        /// Action responsável pela exibição dos detalhes do vendedor selecionado.
+        /// </summary>
+        /// <param name="id">Parâmetro de exibição dos detalhes do vendedor.</param>
+        /// <returns>View com dados do vendedor selecionado.</returns>
         public async Task<IActionResult> Details(int? id) 
         {
             if (id == null)
@@ -99,6 +127,11 @@ namespace SalesWebMvc.Controllers
             return View(obj);
         }
 
+        /// <summary>
+        /// Action responsável pela edição do vendedor por GET.
+        /// </summary>
+        /// <param name="id">Parâmetro de edição do vendedor.</param>
+        /// <returns>View com dados atualizados após edição do vendedor.</returns>
         public async Task<IActionResult> Edit(int? id) 
         {
             if (id == null) 
@@ -118,6 +151,12 @@ namespace SalesWebMvc.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Action responsável pela edição do vendedor por POST.
+        /// </summary>
+        /// <param name="id">Parâmetro de edição do vendedor.</param>
+        /// <param name="seller">Representa o objeto vendedor.</param>
+        /// <returns>View com dados atualizados após edição do vendedor.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Seller seller) 
@@ -145,6 +184,11 @@ namespace SalesWebMvc.Controllers
             
         }
 
+        /// <summary>
+        /// Action responsável por exibir mensagem de tratamento de erro.
+        /// </summary>
+        /// <param name="message">Parâmetro de exibição de mensagem de erro.</param>
+        /// <returns>View com dados do vendedor.</returns>
         public IActionResult Error(string message) 
         {
             var viewModel = new ErrorViewModel
