@@ -8,6 +8,11 @@ Aplicação web para simular um sistema de vendas usando ASP.NET Core MVC, códi
 - [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/pt-br/downloads/).
 - [ASP.NET Core MVC v2.1](https://dotnet.microsoft.com/download/dotnet-core/2.1).
 - [C#](https://code.visualstudio.com/).
+- [Linq](https://docs.microsoft.com/pt-br/dotnet/csharp/programming-guide/concepts/linq/).
+- [Entity Framework Core](https://docs.microsoft.com/pt-br/aspnet/core/data/entity-framework-6?view=aspnetcore-2.1/).
+- [Code First Migrations](https://docs.microsoft.com/pt-br/aspnet/core/data/ef-mvc/migrations?view=aspnetcore-2.1/).
+- [MySQL](https://www.mysql.com/).
+- [Bootstrap v3.4.1](https://getbootstrap.com/docs/3.4/getting-started/).
 
 ## :floppy_disk: Clonar repositório
 
