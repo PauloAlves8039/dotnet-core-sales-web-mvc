@@ -47,9 +47,27 @@ namespace SalesWebMvc.Controllers
             return View(result);
         }
 
-        public IActionResult GroupingSearch()
+        /// <summary>
+        /// Action responsável por pesquisa de grupo de vendas por data.
+        /// </summary>
+        /// <param name="minDate">Define uma data mínima para a pesquisa.</param>
+        /// <param name="maxDate">Define uma data maxima para a pesquisa.</param>
+        /// <returns>Registro de um grupo de vendas de acordo com a data especificada.</returns>
+        public async Task<IActionResult> GroupingSearch(DateTime? minDate, DateTime? maxDate)
         {
-            return View();
+            if (!minDate.HasValue)
+            {
+                minDate = new DateTime(DateTime.Now.Year, 1, 1);
+            }
+            if (!maxDate.HasValue)
+            {
+                maxDate = DateTime.Now;
+            }
+
+            ViewData["minDate"] = minDate.Value.ToString("yyyy-MM-dd");
+            ViewData["maxDate"] = maxDate.Value.ToString("yyyy-MM-dd");
+            var result = await _salesRecordService.FindByDateGroupingAsync(minDate, maxDate);
+            return View(result);
         }
     }
 }
